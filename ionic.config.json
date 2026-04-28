@@ -1,0 +1,7 @@
+{
+  "name": "hipatec",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
