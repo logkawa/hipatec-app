@@ -1,0 +1,39 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="navbar-container">
+    
+    <ion-buttons slot="start">
+      <div class="logo-container">
+      <img src="assets/logo_roxo.png" alt="Hipatec Logo" class="logo-img">
+      </div>
+    </ion-buttons>
+
+    <div class="search-box">
+      <ion-searchbar placeholder="digite aqui para buscar..." class="custom-search"></ion-searchbar>
+      <ion-icon name="star-outline" class="star-icon"></ion-icon>
+    </div>
+
+    <ion-buttons slot="end">
+      <ion-button routerLink="/home" fill="clear">home</ion-button>
+
+      <ion-button id="popover-button" fill="clear">aprendizado</ion-button>
+      
+      <ion-button routerLink="/vagas" fill="clear">vagas</ion-button>
+
+      <ion-avatar class="user-avatar">
+        <img src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      </ion-avatar>
+    </ion-buttons>
+
+    <ion-popover trigger="popover-button" triggerAction="click">
+      <ng-template>
+        <ion-content>
+          <ion-list lines="none">
+            <ion-item [button]="true" routerLink="/painel">painel</ion-item>
+            <ion-item [button]="true" routerLink="/meu-aprendizado">meu aprendizado</ion-item>
+          </ion-list>
+        </ion-content>
+      </ng-template>
+    </ion-popover>
+
+  </ion-toolbar>
+</ion-header>
