@@ -1,0 +1,79 @@
+ion-toolbar {
+  --background: #ffffff;
+  --color: #000000; 
+  
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.navbar-container{
+    --padding-start: 20px;
+    --padding-end: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+
+  .logo-img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+  }
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #472b7a;
+  border-radius: 10px;
+  padding: 0 10px;
+  width: 400px;
+  margin: 0 auto;
+
+  .custom-search {
+    color: #472b7a;
+    --background: transparent;
+    --box-shadow: none;
+    padding: 0;
+  }
+  .star-icon {
+    color: #472b7a;
+  }
+}
+
+.user-avatar {
+  width: 35px;
+  height: 35px;
+  margin-left: 15px;
+  border: 1px solid #472b7a;
+}
+
+ion-button {
+    font-family: 'Roboto', sans-serif;
+    --color: #472b7a !important; // tive que fazer isso pra forçar a cor, porque o ion-button tem uma cor padrão que não muda com a variável --color
+    text-transform: lowercase;
+    font-size: 16px;
+    --ripple-color: #7b59b8 !important;
+    --background-hover: transparent !important;
+    --background-hover-opacity: 0 !important;
+    --background-activated: transparent !important;
+    --background-focused: transparent !important;
+}
+
+ion-popover {
+    --background: #ffffff !important;
+
+    ion-list {
+        background: transparent !important;
+    }
+
+    ion-content{
+        --background: transparent;
+    }
+    ion-item {
+        --background: transparent;
+        --color: #472b7a;
+    }
+}
