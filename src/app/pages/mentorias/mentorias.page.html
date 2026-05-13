@@ -1,0 +1,63 @@
+
+<app-navbar></app-navbar>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  <div *ngIf="userRole === 'aluna'">
+    <h2 class="section-title">Meu aprendizado</h2>
+    
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="4" *ngFor="let item of minhasMentorias">
+          <ion-card (click)="abrirDetalhes(item)" class="mentoria-card">
+            <div class="card-image-placeholder"></div>
+            <ion-card-header>
+              <ion-card-subtitle>{{ item.status }}</ion-card-subtitle>
+              <ion-card-title>{{ item.titulo }}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <p>{{ item.descricao }}</p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <h2 class="section-title">Continuar aprendendo</h2>
+    <div class="horizontal-scroll">
+      <ion-card *ngFor="let m of mentoriasDisponiveis" class="wide-card">
+        <ion-card-header>
+          <ion-card-title>{{ m.titulo }}</ion-card-title>
+          <ion-card-subtitle>Mentora: {{ m.mentora }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-button fill="clear" (click)="abrirDetalhes(m)">Inscrever-se agora</ion-button>
+      </ion-card>
+    </div>
+  </div>
+
+  <div *ngIf="userRole === 'mentora'">
+    <h2 class="section-title">Minhas mentorias</h2>
+    <p class="section-subtitle">Gerenciar mentorias e criar novas</p>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" size-md="4" *ngFor="let item of minhasMentorias">
+          <ion-card class="mentoria-card">
+            <div class="card-image-placeholder"></div>
+            <ion-card-header>
+              <ion-card-title>{{ item.titulo }}</ion-card-title>
+            </ion-card-header>
+            <ion-button fill="outline" class="btn-config" (click)="abrirDetalhes(item)">Configurar</ion-button>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="12" size-md="4">
+          <ion-card class="add-card">
+            <ion-icon name="add-outline"></ion-icon>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>

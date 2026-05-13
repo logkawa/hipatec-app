@@ -7,11 +7,16 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'mentorias',
     pathMatch: 'full',
   },
   {
     path: 'login',
     loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage)
   },
+  {
+    path: 'mentorias',
+    loadComponent: () => import('./pages/mentorias/mentorias.page').then( m => m.MentoriasPage)
+  },
+
 ];
