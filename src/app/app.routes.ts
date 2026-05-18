@@ -7,7 +7,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'mentorias',
+    redirectTo: 'login',
     pathMatch: 'full',
   },
   {
@@ -18,5 +18,11 @@ export const routes: Routes = [
     path: 'mentorias',
     loadComponent: () => import('./pages/mentorias/mentorias.page').then( m => m.MentoriasPage)
   },
+
+  {
+    path: 'cadastro',
+    loadComponent: () => import('./pages/cadastro/cadastro.page').then( m => m.CadastroPage)
+  },
+
 
 ];
