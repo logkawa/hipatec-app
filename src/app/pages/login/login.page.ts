@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+// import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonButton, IonItem, IonLabel, IonSegment, IonSegmentButton, IonList } from '@ionic/angular/standalone';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../services/auth.service';
 
-@Component({
+@Component({  
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonButton, IonItem, IonLabel, IonSegment, IonSegmentButton, IonList, CommonModule, FormsModule, HttpClientModule]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonButton, IonItem, IonLabel, IonSegment, IonSegmentButton, IonList, CommonModule, FormsModule]
 })
 export class LoginPage implements OnInit {
 
@@ -45,7 +45,7 @@ export class LoginPage implements OnInit {
             this.auth.saveToken(response.token);
           }
           alert(response.message || `Login successful for ${this.role}`);
-          this.router.navigate(['/mentorias']);
+          // this.router.navigate(['/mentorias']);
         },
         error: err => {
           console.error('API login error:', err);

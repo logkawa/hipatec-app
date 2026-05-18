@@ -1,0 +1,66 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonButton, IonItem, IonLabel, IonSegment, IonSegmentButton, IonList, IonDatetime } from '@ionic/angular/standalone';
+import { EstudanteService } from '../../services/estudante.service';
+import { MentoraService } from '../../services/mentora.service';
+
+@Component({
+  selector: 'app-cadastro',
+  templateUrl: './cadastro.page.html',
+  styleUrls: ['./cadastro.page.scss'],
+  standalone: true,
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonButton, IonItem, IonLabel, IonSegment, IonSegmentButton, IonList, IonDatetime, CommonModule, FormsModule]
+})
+export class CadastroPage implements OnInit {
+
+  role: 'estudantes' | 'mentoras' = 'estudantes';
+  nome = '';
+  email = '';
+  senha = '';
+  dataNascimento = '';
+
+  constructor(
+    private estudanteService: EstudanteService,
+    private mentoraService: MentoraService,
+  ) { }
+
+  ngOnInit() {}
+
+  switchRole(ev: any) {
+    this.role = ev.detail?.value || 'estudantes';
+    this.nome = '';
+    this.email = '';
+    this.senha = '';
+    this.dataNascimento = '';
+  }
+
+  cadastrar() {
+    if (!this.nome || !this.email || !this.senha || !this.dataNascimento) {
+      alert('Preencha todos os campos para continuar.');
+      return;
+    }
+
+    const payload = {
+      nome: this.nome,
+      email: this.email,
+      senha: this.senha,
+      dataNascimento: this.dataNascimento,
+    };
+
+    const request = this.role === 'estudantes'
+      ? this.estudanteService.create(payload)
+      : this.mentoraService.create(payload);
+
+    request.subscribe({
+      next: response => {
+        alert(response.message || `Cadastro realizado com sucesso para ${this.role}.`);
+      },
+      error: err => {
+        console.error('Cadastro error:', err);
+        alert('Falha ao enviar cadastro. Verifique os dados e tente novamente.');
+      }
+    });
+  }
+
+}
