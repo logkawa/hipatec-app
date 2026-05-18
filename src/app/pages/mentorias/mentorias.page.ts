@@ -18,9 +18,11 @@ export class MentoriasPage implements OnInit {
 
   // dados simulados (quando o banco chegar, você só substituirá estes dois array)
   public minhasMentorias = [
-    { id: 1, titulo: 'Curso 1', status: 'Ativo', descricao: 'Lógica de programação', progresso: 0.6 },
-    { id: 2, titulo: 'Curso 2', status: 'Finalizado', descricao: 'UX Design Avançado', progresso: 1.0 },
-    { id: 3, titulo: 'Curso 3', status: 'Pendente', descricao: 'Banco de Dados SQL', progresso: 0.2 },
+    { id: 1, titulo: 'Lógica de programação', descricao: 'Lógica de programação do ZERO para iniciantes', progresso: 0.6 },
+    { id: 2, titulo: 'Fundamentos do UX Design', descricao: 'Fundamentos do UX Design', progresso: 1.0 },
+    { id: 3, titulo: 'Banco de Dados SQL', descricao: 'Banco de Dados SQL e Lógica de BD', progresso: 0.2 },
+    { id: 4, titulo: 'Introdução à Inteligência Artificial', descricao: 'Inteligência Artificial', progresso: 0.2 },
+    { id: 5, titulo: 'Desenvolvimento Web', descricao: 'Desenvolvimento Web com HTML, CSS e JavaScript', progresso: 0.4 },
   ];
 
   public mentoriasDisponiveis = [
