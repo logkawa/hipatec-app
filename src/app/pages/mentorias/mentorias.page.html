@@ -4,36 +4,82 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   
   <div *ngIf="userRole === 'aluna'">
-    <h2 class="section-title">Meu aprendizado</h2>
-    
-    <ion-grid>
-      <ion-row>
-        <ion-col size="12" size-md="4" *ngFor="let item of minhasMentorias">
-          <ion-card (click)="abrirDetalhes(item)" class="mentoria-card">
-            <div class="card-image-placeholder"></div>
-            <ion-card-header>
-              <ion-card-subtitle>{{ item.status }}</ion-card-subtitle>
-              <ion-card-title>{{ item.titulo }}</ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-              <p>{{ item.descricao }}</p>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <h2 class="section-title">Meu aprendizado</h2>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="4" *ngFor="let item of minhasMentorias">
+        <ion-card (click)="abrirDetalhes(item)" class="mentoria-card">
+          <ion-card-content>
+            <ion-grid class="ion-no-padding">
+              <ion-row class="ion-align-items-center">
+                
+                <ion-col size="7">
+                  <div class="card-main-title">{{ item.titulo }}</div>
+                  <p class="card-desc-text">{{ item.descricao }}</p>
+                </ion-col>
+                <ion-col size="5">
+                  <div class="card-image-wireframe"> <!-- Placeholder para imagem -->
+                    <div class="cross-line-1"></div> <!-- Linhas cruzadas para indicar que é um placeholder -->
+                    <div class="cross-line-2"></div> <!-- ISSO VAI SAIR QUANDO TIVER IMAGEM, É SÓ PARA DEIXAR CLARO QUE AQUI VAI TER UMA FOTO DEPOIS -->
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">
+                  <div class="progress-container">
+                    <span class="progress-text">{{ item.progresso * 100 }}% concluído</span>
+                    <ion-progress-bar [value]="item.progresso"></ion-progress-bar>
+                  </div>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
-    <h2 class="section-title">Continuar aprendendo</h2>
-    <div class="horizontal-scroll">
-      <ion-card *ngFor="let m of mentoriasDisponiveis" class="wide-card">
-        <ion-card-header>
-          <ion-card-title>{{ m.titulo }}</ion-card-title>
-          <ion-card-subtitle>Mentora: {{ m.mentora }}</ion-card-subtitle>
-        </ion-card-header>
-        <ion-button fill="clear" (click)="abrirDetalhes(m)">Inscrever-se agora</ion-button>
-      </ion-card>
-    </div>
+  <h2 class="section-title">Continuar aprendendo</h2>
+  <p class="section-subtitle">Confira outras oportunidades de estudo com inscrições abertas</p>
+
+  <div class="horizontal-scroll">
+    <ion-card *ngFor="let m of mentoriasDisponiveis" class="mentoria-card wide-card">
+      <ion-card-content>
+        <ion-grid class="ion-no-padding">
+          <ion-row class="ion-align-items-center">
+            
+            <ion-col size="7">
+              <div class="card-status-text">Inscrições Abertas</div>
+              <div class="card-main-title">{{ m.titulo }}</div>
+              <p class="card-mentor-text">Mentora: {{ m.mentora }}</p>
+              <p class="card-desc-text">{{ m.descricao }}</p>
+              
+              <ion-button class="btn-card-action" fill="solid" (click)="abrirDetalhes(m)">
+                Inscrever-se agora
+              </ion-button>
+            </ion-col>
+            
+            <ion-col size="5">
+              <div class="card-image-wireframe">
+                <div class="cross-line-1"></div>
+                <div class="cross-line-2"></div>
+              </div>
+            </ion-col>
+
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
   </div>
+
+  <div class="pagination-dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+  </div>
+
+  </div>
+
+  
 
   <div *ngIf="userRole === 'mentora'">
     <h2 class="section-title">Minhas mentorias</h2>
