@@ -21,8 +21,6 @@ export class MentoriasPage implements OnInit {
     { id: 1, titulo: 'Lógica de programação', descricao: 'Lógica de programação do ZERO para iniciantes', progresso: 0.6 },
     { id: 2, titulo: 'Fundamentos do UX Design', descricao: 'Fundamentos do UX Design', progresso: 1.0 },
     { id: 3, titulo: 'Banco de Dados SQL', descricao: 'Banco de Dados SQL e Lógica de BD', progresso: 0.2 },
-    { id: 4, titulo: 'Introdução à Inteligência Artificial', descricao: 'Inteligência Artificial', progresso: 0.2 },
-    { id: 5, titulo: 'Desenvolvimento Web', descricao: 'Desenvolvimento Web com HTML, CSS e JavaScript', progresso: 0.4 },
   ];
 
   public mentoriasDisponiveis = [

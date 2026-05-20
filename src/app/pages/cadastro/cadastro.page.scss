@@ -1,0 +1,158 @@
+
+
+
+.container {
+  background: #ffffff;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* --- Metade Esquerda: Identidade Visual --- */
+.panel-left {
+  flex: 1;
+  background: linear-gradient(135deg, #fff3cd 0%, #9b82c9 100%);
+  padding: 40px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+
+  .logo-box {
+    margin-bottom: 60px;
+    .logo-img {
+      height: 130px;
+      width: auto;
+    }
+  }
+
+  .comunidade-text {
+    font-family: 'Roboto', sans-serif;
+    color: #472b7a;
+    font-size: 42px;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+    line-height: 1.2;
+
+    span {
+      display: block;
+    }
+  }
+
+  .subtitle-text {
+    font-family: 'Roboto', sans-serif;
+    color: #472b7a;
+    font-size: 20px;
+    line-height: 1.6;
+    opacity: 0.8;
+    max-width: 320px;
+    margin: 0;
+  }
+}
+
+main {
+  flex: 1;
+  background: #ffffff;
+  padding: 40px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.register-title {
+  font-family: 'Roboto', sans-serif;
+  color: #472b7a;
+  font-weight: 700;
+  font-size: 24px;
+  margin: 0 0 25px 0;
+  text-align: center;
+}
+
+
+.input-group {
+  text-align: left;
+  margin-bottom: 16px;
+
+  label {
+    font-family: 'Roboto', sans-serif;
+    color: #472b7a;
+    font-size: 13px;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 4px;
+    margin-left: 4px;
+  }
+
+  input {
+    width: 100%;
+    height: 42px;
+    border: 1px solid #7b59b8;
+    border-radius: 12px;
+    padding: 0 14px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    color: #333333;
+    background: #ffffff;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s;
+
+    &::placeholder {
+      color: #c0b3dc;
+    }
+
+    &:focus {
+      border-color: #472b7a;
+      box-shadow: 0 0 0 1px #472b7a;
+    }
+  }
+}
+
+
+.btn-register {
+  width: 100%;
+  height: 46px;
+  background: #472b7a;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: lowercase;
+  cursor: pointer;
+  margin-top: 15px;
+  box-shadow: 0 4px 12px rgba(71, 43, 122, 0.2);
+  transition: background-color 0.2s;
+
+  &:hover {
+    background: #392263;
+  }
+}
+
+.register-footer-links {
+  margin-top: 15px;
+  text-align: center;
+
+  .footer-link {
+    font-family: 'Roboto', sans-serif;
+    color: #555555;
+    font-size: 12px;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      color: #472b7a;
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .panel-left {
+    display: none;
+  }
+}

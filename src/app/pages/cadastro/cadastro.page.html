@@ -1,50 +1,43 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>cadastro</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="container">
+    
+    <div class="panel-left">
+      <div class="logo-box">
+        <img src="assets/logo_hipatec_roxo.png" alt="Hipatec" class="logo-img" />
+      </div>
+      <h2 class="comunidade-text">Junte-se à <span>&lt;Comunidade&gt;</span></h2>
+      <p class="subtitle-text">
+        Crie sua conta para se conectar, aprender e crescer com outras mulheres na tecnologia.
+      </p>
+    </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">cadastro</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <main>
+      <h1 class="register-title">Crie sua conta</h1>
 
-  <main class="ion-padding">
-    <ion-segment value="estudantes" (ionChange)="switchRole($event)">
-      <ion-segment-button value="estudantes">
-        <ion-label>Estudantes</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="mentoras">
-        <ion-label>Mentoras</ion-label>
-      </ion-segment-button>
-    </ion-segment>
+      <div class="input-group">
+        <label>nome completo</label>
+        <input type="text" [(ngModel)]="nome" placeholder="digite seu nome completo" />
+      </div>
 
-    <h2 style="margin-top:16px">{{ role === 'estudantes' ? 'Cadastro Estudante' : 'Cadastro Mentora' }}</h2>
+      <div class="input-group">
+        <label>data de nascimento</label>
+        <input type="text" [(ngModel)]="dataNascimento" placeholder="dd / mm / aaaa" onfocus="(this.type='date')" onblur="(this.type='text')" />
+      </div>
 
-    <ion-list>
-      <ion-item>
-        <ion-label position="floating">Nome</ion-label>
-        <ion-input [(ngModel)]="nome" type="text" placeholder="Seu nome"></ion-input>
-      </ion-item>
+      <div class="input-group">
+        <label>email</label>
+        <input type="email" [(ngModel)]="email" placeholder="seuemail@exemplo.com" />
+      </div>
 
-      <ion-item>
-        <ion-label position="floating">Email</ion-label>
-        <ion-input [(ngModel)]="email" type="email" placeholder="seu@email.com"></ion-input>
-      </ion-item>
+      <div class="input-group">
+        <label>senha</label>
+        <input type="password" [(ngModel)]="senha" placeholder="digite sua senha" />
+      </div>
 
-      <ion-item>
-        <ion-label position="floating">Senha</ion-label>
-        <ion-input [(ngModel)]="senha" type="password" placeholder="sua senha"></ion-input>
-      </ion-item>
+      <button class="btn-register" (click)="cadastrar()">cadastrar</button>
 
-      <ion-item>
-        <ion-label position="floating">Data de Nascimento</ion-label>
-        <ion-datetime [(ngModel)]="dataNascimento" presentation="date"></ion-datetime>
-      </ion-item>
-    </ion-list>
+      <div class="register-footer-links">
+        <a class="footer-link" routerLink="/login">já possui uma conta?</a>
+      </div>
+    </main>
 
-    <ion-button expand="block" (click)="cadastrar()">Cadastrar como {{ role }}</ion-button>
-  </main>
-</ion-content>
+</div>
