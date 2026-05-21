@@ -1,40 +1,43 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<div class="gradient-bg">
+  
+  <div class="container">
+    <div class="logo-box">
+        <img src="assets/logo_hipatec_roxo.png" alt="Hipatec" class="logo-img" />
+      </div>
+    <main>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+      
 
-  <main class="ion-padding">
-    <ion-segment value="estudantes" (ionChange)="switchRole($event)">
-      <ion-segment-button value="estudantes">
-        <ion-label>Estudantes</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="mentoras">
-        <ion-label>Mentoras</ion-label>
-      </ion-segment-button>
-    </ion-segment>
+      <h2 class="login-title">{{ role === 'estudantes' ? 'Login Estudante' : 'Login Mentora' }}</h2>
 
-    <h2 style="margin-top:16px">{{ role === 'estudantes' ? 'Login Estudante' : 'Login Mentora' }}</h2>
+      <ion-segment value="estudantes" (ionChange)="switchRole($event)">
+        <ion-segment-button value="estudantes">
+          <ion-label>Estudantes</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="mentoras">
+          <ion-label>Mentoras</ion-label>
+        </ion-segment-button>
+      </ion-segment>
 
-    <ion-list>
-      <ion-item>
-        <ion-label position="floating">Email</ion-label>
-        <ion-input [(ngModel)]="email" type="email" placeholder="seu@email.com"></ion-input>
-      </ion-item>
+      <div class="input-group">
+        <label>email</label>
+        <input type="email" [(ngModel)]="email" placeholder="Digite seu email" />
+      </div>
 
-      <ion-item>
-        <ion-label position="floating">Senha</ion-label>
-        <ion-input [(ngModel)]="password" type="password" placeholder="sua senha"></ion-input>
-      </ion-item>
-    </ion-list>
+      <div class="input-group">
+        <label>senha</label>
+        <input type="password" [(ngModel)]="password" placeholder="Digite sua senha" />
+      </div>
 
-    <ion-button expand="block" (click)="login()">Entrar como {{ role }}</ion-button>
-  </main>
-</ion-content>
+      <button class="btn-login" (click)="login()">fazer login</button>
+
+      <div class="login-footer-links">
+        <a class="footer-link">Esqueceu sua senha?</a>
+        <a class="footer-link" routerLink="/cadastro">Não possui cadastro?</a>
+
+      </div>
+
+    </main>
+
+  </div>
+</div>
