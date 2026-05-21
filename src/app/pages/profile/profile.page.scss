@@ -1,0 +1,200 @@
+.gradient-bg {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #fff3cd 0%, #ffffff 50%, #9b82c9 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0cqi;
+  box-sizing: border-box;
+}
+
+.main-layout-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  height: 94vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.header-container {
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.13);
+  padding: 20px 80px;
+  width: 100%;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.profile-header {
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+
+.cover-banner {
+  width: 100%;
+  height: 120px;
+  background-color: #e0e0e0;
+  border: 1px solid #cccccc;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.profile-info-container {
+  display: flex;
+  align-items: flex-end;
+  padding: 0 20px;
+  margin-top: -50px;
+  position: relative;
+  z-index: 5;
+  gap: 20px;
+}
+
+.avatar-box {
+  background: #ffffff;
+  padding: 4px;
+  border-radius: 50%;
+  display: inline-block;
+
+  .profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid #999999;
+    background: #e0e0e0;
+    object-fit: cover;
+  }
+}
+
+.profile-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex: 1;
+  padding-bottom: 5px;
+  
+  .user-meta {
+    .user-name { font-family: 'Roboto', sans-serif; color: #472b7a; font-size: 22px; font-weight: 700; margin: 0; }
+    .user-username { font-family: 'Roboto', sans-serif; color: #666666; font-size: 16px; margin: 0; }
+    .user-role { font-family: 'Roboto', sans-serif; color: #7b59b8; font-size: 16px; font-weight: 500; margin: 4px 0 0 0; }
+  }
+
+  /* Suporte a dados futuros lado a lado */
+  .profile-stats {
+    display: flex;
+    gap: 15px;
+    
+    .stats-item {
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      color: #333333;
+      display: flex;
+      gap: 4px;
+      align-items: center;
+
+      strong { color: #000000; font-weight: 700; }
+      span { color: #555555; }
+    }
+  }
+}
+
+.profile-bio-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 12px 20px 0 20px;
+  gap: 20px;
+
+  .user-bio { font-family: 'Roboto', sans-serif; color: #444444; font-size: 16px; line-height: 1.5; margin: 0; flex: 1; }
+  .btn-edit-profile {
+    background: #e0e0e0; color: #333333; border: 1px solid #999999; border-radius: 4px;
+    padding: 5px 12px; font-family: 'Roboto', sans-serif; font-size: 16px; cursor: pointer; white-space: nowrap;
+    &:hover { background: #d4d4d4; }
+  }
+}
+
+/* ==========================================================================
+   CONTAINER 2: Bloco do Feed (Com o descolamento "margin-top" solicitado)
+   ========================================================================== */
+.feed-container {
+  background: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.13);
+  padding: 40px 80px;
+  width: 100%;
+  box-sizing: border-box;
+  
+  margin-top: 15px; /* SEPARA LEVEMENTE O CONTAINER DO HEADER */
+  flex: 1;          /* Ocupa o restante da tela verticalmente */
+  overflow-y: auto; /* A rolagem fica exclusiva nos posts agora! */
+
+  &::-webkit-scrollbar { width: 6px; }
+  &::-webkit-scrollbar-thumb { background: #dcd6e8; border-radius: 10px; }
+}
+
+/* Estilização interna dos cartões cinzas do Feed */
+.post-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+
+  &:last-child { margin-bottom: 0; } /* Remove margem do último post */
+
+  .post-header {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 12px;
+
+    .post-avatar-placeholder {
+      width: 36px; height: 36px; border-radius: 50%; background: #ffffff; border: 1px solid #999999; margin-right: 12px;
+    }
+    .post-meta {
+      display: flex; flex-direction: column;
+      .post-author { font-family: 'Roboto', sans-serif; color: #000000; font-weight: 700; font-size: 13px; }
+      .post-role { font-family: 'Roboto', sans-serif; color: #555555; font-size: 11px; }
+    }
+    .post-time { font-family: 'Roboto', sans-serif; font-size: 11px; color: #333333; margin-left: auto; margin-right: 35px; }
+    .btn-options { position: absolute; right: 0; background: none; border: none; color: #000000; cursor: pointer; font-size: 14px; font-weight: bold; }
+  }
+
+  .post-body {
+    .post-text { font-family: 'Roboto', sans-serif; color: #000000; font-size: 13px; line-height: 1.5; margin: 0 0 12px 0; }
+    
+    /* Box de imagem limpo sem cruzes, aceitando imagens futuras do banco */
+    .post-image-box {
+      width: 100%;
+      max-width: 450px;
+      height: 200px;
+      background: #ffffff;
+      border: 1px solid #999999;
+      border-radius: 4px;
+      margin-top: 10px;
+    }
+  }
+
+  .post-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+
+    .action-dot {
+      width: 14px; height: 14px; background: #ffffff; border: 1px solid #999999; border-radius: 50%; cursor: pointer;
+      &:hover { background: #f0f0f0; }
+    }
+  }
+}
+
+.cover-banner {
+  .cross-line-1, .cross-line-2 {
+    position: absolute; width: 150%; height: 1px; background-color: #b5b5b5; top: 50%; left: -25%;
+  }
+  .cross-line-1 { transform: rotate(10deg); }
+  .cross-line-2 { transform: rotate(-10deg); }
+}

@@ -22,7 +22,11 @@ export const routes: Routes = [
   {
     path: 'cadastro',
     loadComponent: () => import('./pages/cadastro/cadastro.page').then( m => m.CadastroPage)
+  },  {
+    path: 'profile',
+    loadComponent: () => import('./pages/profile/profile.page').then( m => m.ProfilePage)
   },
+
 
 
 ];

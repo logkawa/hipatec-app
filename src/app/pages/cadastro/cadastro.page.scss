@@ -53,13 +53,15 @@
 }
 
 main {
+  max-width: 800px;
   flex: 1;
   background: #ffffff;
-  padding: 40px 50px;
+  padding: 40px 120px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   box-sizing: border-box;
+
 }
 
 .register-title {
@@ -75,6 +77,8 @@ main {
 .input-group {
   text-align: left;
   margin-bottom: 16px;
+  position: relative;
+  width: 100%;
 
   label {
     font-family: 'Roboto', sans-serif;
@@ -94,7 +98,7 @@ main {
     padding: 0 14px;
     font-family: 'Roboto', sans-serif;
     font-size: 13px;
-    color: #333333;
+    color: #472b7a;
     background: #ffffff;
     box-sizing: border-box;
     outline: none;
@@ -135,11 +139,11 @@ main {
 
 .register-footer-links {
   margin-top: 15px;
-  text-align: center;
+  text-align: left;
 
   .footer-link {
     font-family: 'Roboto', sans-serif;
-    color: #555555;
+    color: #472b7a;
     font-size: 12px;
     text-decoration: none;
     cursor: pointer;
