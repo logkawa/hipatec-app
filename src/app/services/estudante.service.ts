@@ -20,4 +20,9 @@ export class EstudanteService {
     const url = `${environment.apiUrl}estudantes`;
     return this.http.post<{ message?: string }>(url, estudante);
   }
+
+  getPerfil(id: number): Observable<any> {
+    const url = `${environment.apiUrl}estudantes/${id}`;
+    return this.http.get(url);
+  }
 }

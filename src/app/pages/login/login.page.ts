@@ -2,17 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 // import { HttpClientModule } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonButton, IonItem, IonLabel, IonSegment, IonSegmentButton, IonList } from '@ionic/angular/standalone';
+import { Router, RouterLink } from '@angular/router'; // aqui faltou importar o RouterLink
+import { IonLabel, IonSegment, IonSegmentButton } from '@ionic/angular/standalone';
 import { environment } from '../../../environments/environment';
 import { AuthService } from '../../services/auth.service';
 
-@Component({  
+
+@Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonButton, IonItem, IonLabel, IonSegment, IonSegmentButton, IonList, CommonModule, FormsModule]
+  imports: [IonLabel, IonSegment, IonSegmentButton, CommonModule, FormsModule, RouterLink] // adicionei o RouterLink aqui
 })
 export class LoginPage implements OnInit {
 
@@ -20,7 +21,7 @@ export class LoginPage implements OnInit {
   email = '';
   password = '';
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router) { } // isso aqui precisa estar em todas? acredito que sim
 
   ngOnInit() {
   }
@@ -39,17 +40,19 @@ export class LoginPage implements OnInit {
 
     this.auth.login(this.role, this.email, this.password)
       .subscribe({
-        next: response => {
-          console.log('API login response:', response);
-          if (response.token) {
-            this.auth.saveToken(response.token);
-          }
-          alert(response.message || `Login successful for ${this.role}`);
-          // this.router.navigate(['/mentorias']);
+        next: (id) => {
+
+          alert(`Login successful for ${this.role}`);
+
+          console.log('Login successful, received ID:', id);
+          localStorage.setItem('userRole', this.role);
+          localStorage.setItem('userId', id.toString());
+
+          this.router.navigate(['/mentorias']);
         },
-        error: err => {
-          console.error('API login error:', err);
-          alert('Login failed. Verifique seus dados e tente novamente.');
+        error: (err) => {
+          alert('Email ou senha inválidos');
+          console.error(err);
         }
       });
   }

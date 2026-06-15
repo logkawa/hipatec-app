@@ -15,10 +15,15 @@ import { MentoriasService, Mentoria } from '../../services/mentorias.service';
 
 export class MentoriasPage implements OnInit {
 
-  public userRole: string = 'aluna'; // papel de usuária teste
+  public userRole: string = localStorage.getItem('userRole') || 'estudante'; // papel de usuária teste
 
-  // mentorias carregadas do backend
-  public minhasMentorias: Mentoria[] = [];
+  // dados simulados (quando o banco chegar, você só substituirá estes dois array)
+  public minhasMentorias: Mentoria[] = [
+    { id: 1, titulo: 'Lógica de programação', descricao: 'Lógica de programação do ZERO para iniciantes', progresso: 0.6 },
+    { id: 2, titulo: 'Fundamentos do UX Design', descricao: 'Fundamentos do UX Design', progresso: 1.0 },
+    { id: 3, titulo: 'Banco de Dados SQL', descricao: 'Banco de Dados SQL e Lógica de BD', progresso: 0.2 },
+    { id: 4, titulo: 'TESTE', descricao: 'TETRETETET', progresso: 0.8 },
+  ];
 
   public mentoriasDisponiveis = [
     { id: 10, titulo: 'Mentoria de Carreira', mentora: 'Ana Silva', descricao: 'Como se preparar para entrevistas.' },
@@ -27,8 +32,13 @@ export class MentoriasPage implements OnInit {
 
   constructor(private modalCtrl: ModalController, private mentoriasService: MentoriasService) { }
 
+  isMentora(): boolean {
+    console.log('Verificando se é mentora, userRole:', this.userRole);
+    return this.userRole === 'mentora';
+  }
   ngOnInit() {
     this.loadMentorias();
+    this.isMentora(); // para debug, pode remover depois
   }
 
   loadMentorias() {

@@ -7,15 +7,26 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  login(role: 'estudantes' | 'mentoras', email: string, senha: string): Observable<{ token?: string; message?: string }> {
-    const endpoint = role === 'estudantes' ? 'estudantes/login' : 'mentoras/login';
+  login(
+    role: 'estudantes' | 'mentoras',
+    email: string,
+    senha: string
+  ): Observable<number> {
+
+    const endpoint =
+      role === 'estudantes'
+        ? 'estudantes/login'
+        : 'mentoras/login';
+
     const url = `${environment.apiUrl}${endpoint}`;
-    const params = new HttpParams().set('email', email).set('senha', senha);
-    return this.http.post<{ token?: string; message?: string }>(url, {}, { params });
-  }
+    const params = new HttpParams()
+      .set('email', email)
+      .set('senha', senha);
 
+    return this.http.post<number>(url, {}, { params });
+  }
   saveToken(token: string) {
     try { localStorage.setItem('auth_token', token); } catch { /* ignore on private mode */ }
   }

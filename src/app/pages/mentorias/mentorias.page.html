@@ -3,7 +3,7 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   
-  <div *ngIf="userRole === 'aluna'">
+  <div *ngIf="userRole === 'estudantes'">
   <h2 class="section-title">Meu aprendizado</h2>
   <ion-grid>
     <ion-row>
@@ -27,7 +27,7 @@
               <ion-row>
                 <ion-col size="12">
                   <div class="progress-container">
-                    <span class="progress-text">{{ item.progresso * 100 }}% concluído</span>
+                    <span class="progress-text">{{ (item.progresso ?? 0) * 100 }}% concluído</span>
                     <ion-progress-bar [value]="item.progresso"></ion-progress-bar>
                   </div>
                 </ion-col>
@@ -72,16 +72,11 @@
     </ion-card>
   </div>
 
-  <div class="pagination-dots">
-    <span class="dot active"></span>
-    <span class="dot"></span>
-  </div>
-
   </div>
 
   
 
-  <div *ngIf="userRole === 'mentora'">
+  <div *ngIf="userRole === 'mentoras'">
     <h2 class="section-title">Minhas mentorias</h2>
     <p class="section-subtitle">Gerenciar mentorias e criar novas</p>
 

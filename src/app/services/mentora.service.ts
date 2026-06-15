@@ -20,4 +20,8 @@ export class MentoraService {
     const url = `${environment.apiUrl}mentoras`;
     return this.http.post<{ message?: string }>(url, mentora);
   }
+  getPerfil(id: number): Observable<any> {
+    const url = `${environment.apiUrl}mentoras/${id}`;
+    return this.http.get(url);
+  }
 }

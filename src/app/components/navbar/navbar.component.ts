@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,8 +15,13 @@ export class NavbarComponent  implements OnInit {
 
   public userROLE: string = 'aluna'; // vou criar assim pra testar, depois a gente cria os usuários certinho
   
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {}
 
+  goToProfile() {
+    // aqui você pode usar o Router para navegar para a página de perfil
+    // por exemplo: this.router.navigate(['/profile']);
+    this.router.navigate(['/profile']); 
+  }
 }

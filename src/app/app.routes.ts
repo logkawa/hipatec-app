@@ -24,6 +24,11 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/cadastro/cadastro.page').then( m => m.CadastroPage)
   },
   {
+    path: 'profile',
+    loadComponent: () => import('./pages/profile/profile.page').then( m => m.ProfilePage)
+  },
+
+  {
     path: 'mentorias/cadastro',
     loadComponent: () => import('./pages/mentorias/cadastro/cadastro.page').then( m => m.CadastroPage)
   },
