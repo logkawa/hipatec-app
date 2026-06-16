@@ -14,29 +14,34 @@
       <h1 class="register-title">Crie sua conta</h1>
 
       <div class="input-group">
-        <label>nome completo</label>
-        <input type="text" [(ngModel)]="nome" placeholder="digite seu nome completo" />
+        <label>Nome completo</label>
+        <input type="text" required [(ngModel)]="nome" placeholder="digite seu nome completo" />
       </div>
 
       <div class="input-group">
-        <label>data de nascimento</label>
-        <input type="text" [(ngModel)]="dataNascimento" placeholder="dd / mm / aaaa" onfocus="(this.type='date')" onblur="(this.type='text')" />
+        <label>Data de nascimento</label>
+        <input type="text" required [(ngModel)]="dataNascimento" placeholder="dd / mm / aaaa" onfocus="(this.type='date')" onblur="(this.type='text')" />
       </div>
 
       <div class="input-group">
-        <label>email</label>
-        <input type="email" [(ngModel)]="email" placeholder="seuemail@exemplo.com" />
+        <label>Email</label>
+        <input type="email" required [(ngModel)]="email" placeholder="seuemail@exemplo.com" />
       </div>
 
       <div class="input-group">
-        <label>senha</label>
-        <input type="password" [(ngModel)]="senha" placeholder="digite sua senha" />
+        <label>Usuário</label>
+        <input type="text" required [(ngModel)]="usuario" placeholder="digite seu usuário" />
       </div>
 
-      <button class="btn-register" (click)="cadastrar()">cadastrar</button>
+      <div class="input-group">
+        <label>Senha</label>
+        <input type="password" required [(ngModel)]="senha" placeholder="digite sua senha" />
+      </div>
+
+      <button class="btn-register" (click)="cadastrar()">Cadastrar</button>
 
       <div class="register-footer-links">
-        <a class="footer-link" routerLink="/login">já possui uma conta?</a>
+        <a class="footer-link" routerLink="/login">Já possui uma conta?</a>
       </div>
     </main>
 

@@ -1,0 +1,31 @@
+<div class="edit-modal-backdrop" *ngIf="show">
+  <div class="edit-modal">
+    <button class="modal-close" (click)="closeModal()">✕</button>
+
+    <h3>Editar perfil</h3>
+
+    <div class="modal-body">
+      <label>Nome</label>
+      <input type="text" [(ngModel)]="editModel.nome" />
+
+      <label>Usuário</label>
+      <input type="text" [(ngModel)]="editModel.usuario" />
+
+      <label>Biografia</label>
+      <textarea rows="3" [(ngModel)]="editModel.biografia"></textarea>
+
+      <label>Foto de perfil</label>
+      <div class="img-upload-row">
+        <div class="img-preview" *ngIf="previewUrl">
+          <img [src]="previewUrl" alt="preview" />
+        </div>
+        <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-cancel" (click)="closeModal()">Cancelar</button>
+      <button class="btn-save" (click)="saveProfile()" [disabled]="saving">{{ saving ? 'Salvando...' : 'Salvar' }}</button>
+    </div>
+  </div>
+</div>

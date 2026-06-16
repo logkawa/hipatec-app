@@ -1,0 +1,39 @@
+.edit-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.45);
+  z-index: 9999;
+}
+
+.edit-modal {
+  width: 92%;
+  max-width: 520px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px;
+  position: relative;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+}
+
+.modal-close {
+  position: absolute;
+  right: 12px;
+  top: 8px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-body { display:flex; flex-direction:column; gap:8px; margin-top:10px; }
+.modal-body label { font-size:13px; color:#333; }
+.modal-body input[type="text"], .modal-body textarea { padding:8px 10px; border-radius:6px; border:1px solid #ddd; }
+.img-upload-row { display:flex; gap:10px; align-items:center; }
+.img-preview img { width:72px; height:72px; object-fit:cover; border-radius:8px; border:1px solid #ccc; }
+
+.modal-actions { display:flex; justify-content:flex-end; gap:10px; margin-top:12px; }
+.btn-cancel { background:transparent; border:1px solid #ccc; padding:8px 12px; border-radius:8px; cursor:pointer; }
+.btn-save { background:#472b7a; color:#fff; border:none; padding:8px 12px; border-radius:8px; cursor:pointer; }

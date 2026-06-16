@@ -1,50 +1,57 @@
 <app-navbar></app-navbar>
 
-<div class="gradient-bg">
+<ion-content fullscreen class="gradient-bg">
   <div class="main-layout-wrapper">
 
     <div class="header-container">
       <header class="profile-header">
         
         <div class="cover-banner">
-          <img src="../../../assets/header_perfil.png">
+          <img src="{{ perfil.background || '../../../assets/header_perfil.png' }}" alt="Banner do perfil" />
         </div>
 
         <div class="profile-info-container">
           <div class="avatar-box">
-            <img src="assets/avatar-placeholder.png" alt="{{ perfil.nome }}" class="profile-avatar" />
+            <img src="{{ perfil.pfp || '../../../assets/avatar-placeholder.png' }}" alt="{{ perfil.nome }}" class="profile-avatar" />
           </div>
           
           <div class="profile-details">
             <div class="user-meta">
               <h2 class="user-name">{{ perfil.nome }}</h2>
-              <p class="user-username">@{{ perfil.email.split('@')[0] }}</p>
+              <p class="user-username">@{{ perfil.usuario}}</p>
               <p class="user-role">{{ userRole }} - IFSP Pirituba</p>
             </div>
 
             <div class="profile-stats">
               <div class="stats-item">
-                <strong class="num-posts">50</strong> 
+                <strong class="num-posts">{{ perfil.num_publicacoes }}</strong> 
                 <span>posts</span>
               </div>
               <div class="stats-item">
-                <strong class="num-seguidores">29</strong>
+                <strong class="num-seguidores">{{ perfil.num_seguidores }}</strong>
                 <span>seguidores</span>
               </div>
               <div class="stats-item">
-                <strong class="num-seguindo">34</strong> 
+                <strong class="num-seguindo">{{ perfil.num_seguindo }}</strong> 
                 <span>seguindo</span>
               </div>
             </div>
           </div>
         </div>
-
+        
         <div class="profile-bio-row">
           <p class="user-bio">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis ex in massa congue facilisis vel ac nulla.
+            {{ perfil.biografia }}
           </p>
-          <button class="btn-edit-profile">editar perfil</button>
+          <button class="btn-edit-profile" (click)="editProfile()">editar perfil</button>
         </div>
+
+        <app-edit-profile-modal
+          [show]="showEditModal"
+          [perfil]="perfil"
+          (close)="showEditModal = false"
+          (requestSave)="salvarFromModal($event)">
+        </app-edit-profile-modal>
 
       </header>
     </div>
@@ -75,32 +82,7 @@
         </div>
       </div>
 
-      <div class="post-card">
-        <div class="post-header">
-          <div class="post-avatar-placeholder"></div>
-          <div class="post-meta">
-            <span class="post-author">{{ perfil.nome }}</span>
-            <span class="post-role">{{ userRole }}</span>
-          </div>
-          <span class="post-time">3d</span>
-          <button class="btn-options">&#8226;&#8226;&#8226;</button>
-        </div>
-
-        <div class="post-body">
-          <p class="post-text">Fusce posuere erat non elit elementum mollis egestas vel est?</p>
-          
-          <div class="post-image-box">
-            </div>
-        </div>
-
-        <div class="post-actions">
-          <span class="action-dot"></span>
-          <span class="action-dot"></span>
-          <span class="action-dot"></span>
-        </div>
-      </div>
-
     </div>
 
   </div>
-</div>
+</ion-content>

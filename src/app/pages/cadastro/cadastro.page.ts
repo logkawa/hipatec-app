@@ -22,7 +22,7 @@ export class CadastroPage implements OnInit {
   email = '';
   senha = '';
   dataNascimento = '';
-
+  usuario = '';
   constructor(
     private estudanteService: EstudanteService,
     private mentoraService: MentoraService,
@@ -37,10 +37,11 @@ export class CadastroPage implements OnInit {
     this.email = '';
     this.senha = '';
     this.dataNascimento = '';
+    this.usuario = '';
   }
 
   cadastrar() {
-    if (!this.nome || !this.email || !this.senha || !this.dataNascimento) {
+    if (!this.nome || !this.email || !this.senha || !this.dataNascimento || !this.usuario) {
       alert('Preencha todos os campos para continuar.');
       return;
     }
@@ -50,6 +51,7 @@ export class CadastroPage implements OnInit {
       email: this.email,
       senha: this.senha,
       dataNascimento: this.dataNascimento,
+      usuario: this.usuario,
     };
 
     const request = this.role === 'estudantes'
