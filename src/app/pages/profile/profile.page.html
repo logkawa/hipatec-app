@@ -56,22 +56,24 @@
       </header>
     </div>
 
-    <div class="feed-container">
+    <div class="feed-container" >
       
-      <div class="post-card">
+      <div class="post-card" *ngFor="let post of posts">
         <div class="post-header">
-          <div class="post-avatar-placeholder"></div>
+          <div class="post-avatar-placeholder">
+            <img [src]="perfil?.pfp || post.autorFoto" [alt]="perfil?.nome || post.autor" />
+          </div>
           <div class="post-meta">
-            <span class="post-author">{{ perfil.nome }}</span>
+            <span class="post-author">{{ perfil?.nome || post.autor }}</span>
             <span class="post-role">{{ userRole }}</span>
           </div>
-          <span class="post-time">2h</span>
+          <span class="post-time">{{ post.tempo }}</span>
           <button class="btn-options">&#8226;&#8226;&#8226;</button>
         </div>
 
         <div class="post-body">
           <p class="post-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent quis ex in massa congue facilisis vel ac nulla. Fusce ante purus, porttitor id sollicitudin id, sollicitudin vel metus. Donec eget aliquam metus. Pellentesque tempor nisi ac est ornare lobortis.
+            {{ post.conteudo }}
           </p>
         </div>
 

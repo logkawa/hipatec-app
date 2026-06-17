@@ -30,6 +30,16 @@ ion-content {
     background: #e0e0e0;
     border: 1px solid #999999;
     flex-shrink: 0;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   textarea {

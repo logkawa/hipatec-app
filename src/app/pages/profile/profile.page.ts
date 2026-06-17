@@ -7,6 +7,7 @@ import { EstudanteService } from '../../services/estudante.service';
 import { MentoraService } from '../../services/mentora.service';
 import { PerfilService } from '../../services/perfil.service';
 import { EditProfileModalComponent } from '../../components/edit-profile-modal/edit-profile-modal.component';
+import { PostsService } from '../../services/posts.service';
 
 @Component({
   selector: 'app-profile',
@@ -33,24 +34,70 @@ export class ProfilePage implements OnInit {
   constructor(
     private estudanteService: EstudanteService, 
     private mentoraService: MentoraService, 
-    private perfilService: PerfilService
+    private perfilService: PerfilService,
+    private postsService: PostsService
   ) {}
 
   userRole = localStorage.getItem('userRole');
   userId = Number(localStorage.getItem('userId'));
   perfil: any;
+  posts: any[] = [];
 
   ngOnInit() {
     this.userRole = localStorage.getItem('userRole');
     this.userId = Number(localStorage.getItem('userId'));
+    const perfilId = Number(localStorage.getItem('perfil') || this.userId);
 
     this.perfilService
       .getPerfil(this.userRole!, this.userId)
       .subscribe(perfil => {
         this.perfil = perfil;
         console.log('Perfil carregado:', perfil);
+        this.loadPosts(perfilId);
       });
-  } 
+  }
+
+  private loadPosts(perfilId: number) {
+    this.postsService.getPostsPerfil(perfilId).subscribe(posts => {
+      this.posts = posts.map(post => this.mapPost(post));
+      console.log('Posts carregados:', this.posts);
+    });
+  }
+
+  private mapPost(post: any) {
+    return {
+      ...post,
+      conteudo: post.conteudo || post.texto || '',
+      tempo: this.formatPostTime(post.dataCriacao),
+      curtidas: post.likesCount ?? 0,
+      comentarios: post.commentsCount ?? 0
+    };
+  }
+
+  private formatPostTime(timestamp: number) {
+    if (!timestamp || isNaN(timestamp)) {
+      return '';
+    }
+
+    const now = Date.now();
+    const diffMs = now - timestamp;
+    const seconds = Math.floor(diffMs / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+
+    if (seconds < 60) {
+      return 'agora';
+    }
+    if (minutes < 60) {
+      return `há ${minutes} min`;
+    }
+    if (hours < 24) {
+      return `há ${hours} h`;
+    }
+    return `há ${days} dia${days > 1 ? 's' : ''}`;
+  }
+
 
   editProfile() {
     this.showEditModal = true;

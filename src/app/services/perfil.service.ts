@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 export interface Perfil {
+    id: number;
     nome: string;
     biografia?: string;
     usuario: string;
@@ -25,6 +26,10 @@ export class PerfilService {
         return this.http.get(
             `${environment.apiUrl}perfil/${role}/${id}`
         );
+    }
+
+    getPerfis() {
+        return this.http.get<Perfil[]>(`${environment.apiUrl}perfil`);
     }
 
     updatePerfil(role: string, id: number, formData: FormData) {

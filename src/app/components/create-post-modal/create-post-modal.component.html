@@ -10,8 +10,10 @@
 
 <ion-content class="ion-padding">
   <div class="post-input-area">
-    <div class="post-avatar"></div>
-    <textarea placeholder="Digite aqui..." rows="6" autofocus></textarea>
+    <div class="post-avatar">
+      <img [src]="pfp" alt="Avatar do usuário" class="avatar-img" />
+    </div>
+    <textarea [(ngModel)]="conteudo" placeholder="Digite aqui..." rows="6" autofocus></textarea>
   </div>
 </ion-content>
 
@@ -24,7 +26,9 @@
         </ion-button>
       </div>
       
-      <button class="btn-submit-post">Postar</button>
+      <button class="btn-submit-post" (click)="postar()" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Postando...' : 'Postar' }}
+      </button>
     </div>
   </ion-toolbar>
 </ion-footer>

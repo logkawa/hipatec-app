@@ -13,17 +13,19 @@
             
             <div class="post-card" *ngFor="let post of posts">
               <div class="post-header">
-                <div class="post-avatar-placeholder"></div>
+                <div class="post-avatar-placeholder">
+                  <img [src]="post.avatar" [alt]="post.autor" />
+                </div>
                 <div class="post-meta">
                   <span class="post-author">{{ post.autor }}</span>
-                  <span class="post-role">{{ post.role }}</span>
+                  <!-- <span class="post-role">{{ post.role }}</span> -->
                 </div>
                 <span class="post-time">{{ post.tempo }}</span>
                 <button class="btn-options">&#8226;&#8226;&#8226;</button>
               </div>
 
               <div class="post-body">
-                <p class="post-text">{{ post.texto }}</p>
+                <p class="post-text">{{ post.conteudo }}</p>
               </div>
 
               <div class="post-actions">
