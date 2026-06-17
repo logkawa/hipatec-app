@@ -49,4 +49,13 @@ export class NavbarComponent  implements OnInit {
     // por exemplo: this.router.navigate(['/profile']);
     this.router.navigate(['/profile']); 
   }
+  goToMentoria() {
+    // aqui você pode usar o Router para navegar para a página de mentoria
+    // por exemplo: this.router.navigate(['/mentoria']);
+    this.router.navigate(['/mentorias']); 
+  }
+  goToHome() {
+    this.router.navigate(['/home']); 
+  }
+
 }

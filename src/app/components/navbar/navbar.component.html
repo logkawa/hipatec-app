@@ -13,11 +13,11 @@
     </div>
 
     <ion-buttons slot="end">
-      <ion-button routerLink="/home" fill="clear">home</ion-button>
+      <ion-button (click)="goToHome()" fill="clear">home</ion-button>
 
       <ion-button id="popover-button" fill="clear">aprendizado</ion-button>
       
-      <ion-button routerLink="/vagas" fill="clear">vagas</ion-button>
+      <!-- <ion-button routerLink="/vagas" fill="clear">vagas</ion-button> -->
 
       <ion-avatar class="user-avatar" (click)="goToProfile()">
         <img [src]="profileImage" />
@@ -28,8 +28,8 @@
       <ng-template>
         <ion-content>
           <ion-list lines="none">
-            <ion-item [button]="true" routerLink="/painel">painel</ion-item>
-            <ion-item [button]="true" routerLink="/meu-aprendizado">meu aprendizado</ion-item>
+            <ion-item [button]="true" (click)="goToMentoria()">painel</ion-item>
+            <!-- <ion-item [button]="true" routerLink="/meu-aprendizado">meu aprendizado</ion-item> -->
           </ion-list>
         </ion-content>
       </ng-template>

@@ -48,7 +48,7 @@ export class LoginPage implements OnInit {
           localStorage.setItem('userRole', this.role);
           localStorage.setItem('userId', id.toString());
 
-          this.router.navigate(['/mentorias']);
+          this.router.navigate(['/home']);
         },
         error: (err) => {
           alert('Email ou senha inválidos');
