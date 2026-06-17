@@ -13,12 +13,19 @@ export class EditProfileModalComponent {
   @Input() show = false;
   @Input() perfil: any;
   @Output() close = new EventEmitter<void>();
-  // Emit a request for the parent page to perform the actual save (payload: { perfil, file })
-  @Output() requestSave = new EventEmitter<{ perfil: any; file?: File | null }>();
+  // Emit a request for the parent page to perform the actual save (payload: { perfil, pfpFile, backgroundFile })
+  @Output() requestSave = new EventEmitter<{ 
+    perfil: any; 
+    pfpFile?: File | null; 
+    backgroundFile?: File | null 
+  }>();
 
   editModel: any = {};
-  selectedFile: File | null = null;
-  previewUrl: string | null = null;
+  selectedPfpFile: File | null = null;
+  selectedBackgroundFile: File | null = null;
+  previewPfp: string | null = null;
+  previewBackground: string | null = null;
+
   saving = false;
 
   constructor() {}
@@ -26,8 +33,10 @@ export class EditProfileModalComponent {
   ngOnChanges(changes: SimpleChanges) {
     if (changes['perfil']) {
       this.editModel = { ...(this.perfil || {}) };
-      this.previewUrl = this.perfil?.pfp || null;
-      this.selectedFile = null;
+      this.previewPfp = this.perfil?.pfp || null;
+      this.previewBackground = this.perfil?.background || null;
+      this.selectedPfpFile = null;
+      this.selectedBackgroundFile = null;
     }
   }
 
@@ -35,12 +44,22 @@ export class EditProfileModalComponent {
     this.close.emit();
   }
 
-  onFileSelected(event: any) {
+  onPfpSelected(event: any) {
     const file: File = event.target.files && event.target.files[0];
     if (file) {
-      this.selectedFile = file;
+      this.selectedPfpFile = file;
       const reader = new FileReader();
-      reader.onload = e => this.previewUrl = (e.target as any).result;
+      reader.onload = e => this.previewPfp = (e.target as any).result;
+      reader.readAsDataURL(file);
+    }
+  }
+
+  onBackgroundSelected(event: any) {
+    const file: File = event.target.files && event.target.files[0];
+    if (file) {
+      this.selectedBackgroundFile = file;
+      const reader = new FileReader();
+      reader.onload = e => this.previewBackground = (e.target as any).result;
       reader.readAsDataURL(file);
     }
   }
@@ -49,9 +68,14 @@ export class EditProfileModalComponent {
     if (this.saving) return;
     this.saving = true;
 
-    // Emit save request to parent. Parent page will perform the HTTP upload.
-    this.requestSave.emit({ perfil: this.editModel, file: this.selectedFile });
-    // leave saving state; parent will close the modal on success
+    // Emit save request to parent with both files
+    this.requestSave.emit({ 
+      perfil: this.editModel, 
+      pfpFile: this.selectedPfpFile, 
+      backgroundFile: this.selectedBackgroundFile 
+    });
+    
+    // Reset saving state after emission
     this.saving = false;
   }
 }

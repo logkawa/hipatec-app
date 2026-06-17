@@ -42,7 +42,7 @@ export class LoginPage implements OnInit {
       .subscribe({
         next: (id) => {
 
-          alert(`Login successful for ${this.role}`);
+          // alert(`Login successful for ${this.role}`);
 
           console.log('Login successful, received ID:', id);
           localStorage.setItem('userRole', this.role);

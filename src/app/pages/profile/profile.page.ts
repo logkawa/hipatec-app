@@ -13,31 +13,42 @@ import { EditProfileModalComponent } from '../../components/edit-profile-modal/e
   templateUrl: './profile.page.html',
   styleUrls: ['./profile.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, NavbarComponent, EditProfileModalComponent]
+  imports: [
+    IonContent, 
+    IonHeader, 
+    IonTitle, 
+    IonToolbar, 
+    CommonModule, 
+    FormsModule, 
+    NavbarComponent, 
+    EditProfileModalComponent
+  ]
 })
 export class ProfilePage implements OnInit {
   showEditModal = false;
-  selectedFile?: File;
+  selectedPfpFile?: File;
+  selectedBackgroundFile?: File;
+  isSaving = false;
 
-  constructor(private estudanteService: EstudanteService, private mentoraService: MentoraService, private perfilService: PerfilService) { }
+  constructor(
+    private estudanteService: EstudanteService, 
+    private mentoraService: MentoraService, 
+    private perfilService: PerfilService
+  ) {}
+
   userRole = localStorage.getItem('userRole');
   userId = Number(localStorage.getItem('userId'));
-
   perfil: any;
 
   ngOnInit() {
-
     this.userRole = localStorage.getItem('userRole');
     this.userId = Number(localStorage.getItem('userId'));
 
     this.perfilService
       .getPerfil(this.userRole!, this.userId)
       .subscribe(perfil => {
-
         this.perfil = perfil;
-
         console.log('Perfil carregado:', perfil);
-
       });
   } 
 
@@ -50,18 +61,32 @@ export class ProfilePage implements OnInit {
     this.showEditModal = false;
   }
 
-  salvarFromModal(payload: { perfil: any; file?: File | null }) {
-    this.selectedFile = payload.file || undefined;
+  salvarFromModal(payload: { perfil: any; pfpFile?: File | null; backgroundFile?: File | null }) {
+    if (this.isSaving) return;
+    
+    this.selectedPfpFile = payload.pfpFile || undefined;
+    this.selectedBackgroundFile = payload.backgroundFile || undefined;
 
     const formData = new FormData();
 
-    formData.append('nome', payload.perfil.nome);
-    formData.append('usuario', payload.perfil.usuario);
-    formData.append('biografia', payload.perfil.biografia);
+    // Adicionar campos obrigatórios
+    formData.append('nome', payload.perfil.nome || '');
+    formData.append('usuario', payload.perfil.usuario || '');
+    formData.append('biografia', payload.perfil.biografia || '');
 
-    if (this.selectedFile) {
-      formData.append('foto', this.selectedFile);
+    // Adicionar foto de perfil se selecionada
+    if (this.selectedPfpFile) {
+      formData.append('pfp', this.selectedPfpFile, this.selectedPfpFile.name);
     }
+
+    // Adicionar imagem de fundo se selecionada
+    if (this.selectedBackgroundFile) {
+      formData.append('background', this.selectedBackgroundFile, this.selectedBackgroundFile.name);
+    }
+
+    this.isSaving = true;
+
+    console.log(formData);
 
     this.perfilService
       .updatePerfil(
@@ -71,15 +96,25 @@ export class ProfilePage implements OnInit {
       )
       .subscribe({
         next: (perfil: any) => {
-          console.log(perfil);
-          alert('Perfil atualizado!');
-          this.perfil = perfil || { ...this.perfil, ...(payload.perfil || {}) };
+          console.log('Perfil atualizado:', perfil);
+          alert('Perfil atualizado com sucesso!');
+          
+          // Atualizar o perfil local com os dados retornados
+          this.perfil = { 
+            ...this.perfil, 
+            ...(payload.perfil || {}),
+            pfp: perfil.pfp || this.perfil?.pfp,
+            background: perfil.background || this.perfil?.background
+          };
+          
           this.showEditModal = false;
+          this.isSaving = false;
         },
         error: (err) => {
-          console.error(err);
+          console.error('Erro ao atualizar perfil:', err);
+          alert('Erro ao atualizar perfil. Tente novamente.');
+          this.isSaving = false;
         }
       });
   }
 }
-

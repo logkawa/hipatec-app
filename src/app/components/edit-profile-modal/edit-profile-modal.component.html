@@ -16,10 +16,18 @@
 
       <label>Foto de perfil</label>
       <div class="img-upload-row">
-        <div class="img-preview" *ngIf="previewUrl">
-          <img [src]="previewUrl" alt="preview" />
+        <div class="img-preview" *ngIf="previewPfp">
+          <img [src]="previewPfp" alt="preview" />
         </div>
-        <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+        <input type="file" accept="image/*" (change)="onPfpSelected($event)" />
+      </div>
+
+      <label>Foto de fundo</label>
+      <div class="img-upload-row">
+        <div class="img-preview" *ngIf="previewBackground">
+          <img [src]="previewBackground" alt="preview" />
+        </div>
+        <input type="file" accept="image/*" (change)="onBackgroundSelected($event)" />
       </div>
     </div>
 

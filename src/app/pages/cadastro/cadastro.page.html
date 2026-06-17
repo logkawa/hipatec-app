@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" [class.role-mentoras]="role === 'mentoras'">
     
     <div class="panel-left">
       <div class="logo-box">
@@ -12,6 +12,15 @@
 
     <main>
       <h1 class="register-title">Crie sua conta</h1>
+
+      <ion-segment [value]="role" (ionChange)="switchRole($event)" class="role-toggle">
+        <ion-segment-button value="estudantes">
+          <ion-label>Estudante</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="mentoras">
+          <ion-label>Mentora</ion-label>
+        </ion-segment-button>
+      </ion-segment>
 
       <div class="input-group">
         <label>Nome completo</label>
