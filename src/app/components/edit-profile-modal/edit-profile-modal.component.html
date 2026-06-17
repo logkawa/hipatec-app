@@ -1,39 +1,47 @@
 <div class="edit-modal-backdrop" *ngIf="show">
-  <div class="edit-modal">
-    <button class="modal-close" (click)="closeModal()">✕</button>
-
-    <h3>Editar perfil</h3>
-
-    <div class="modal-body">
-      <label>Nome</label>
-      <input type="text" [(ngModel)]="editModel.nome" />
-
-      <label>Usuário</label>
-      <input type="text" [(ngModel)]="editModel.usuario" />
-
-      <label>Biografia</label>
-      <textarea rows="3" [(ngModel)]="editModel.biografia"></textarea>
-
-      <label>Foto de perfil</label>
-      <div class="img-upload-row">
-        <div class="img-preview" *ngIf="previewPfp">
-          <img [src]="previewPfp" alt="preview" />
-        </div>
-        <input type="file" accept="image/*" (change)="onPfpSelected($event)" />
-      </div>
-
-      <label>Foto de fundo</label>
-      <div class="img-upload-row">
-        <div class="img-preview" *ngIf="previewBackground">
-          <img [src]="previewBackground" alt="preview" />
-        </div>
-        <input type="file" accept="image/*" (change)="onBackgroundSelected($event)" />
-      </div>
+  <div class="edit-modal-preview">
+    
+    <div class="modal-header">
+      <button class="modal-close-btn" (click)="closeModal()">✕</button>
+      <h3>Editar perfil</h3>
+      <button class="btn-save" (click)="saveProfile()" [disabled]="saving">
+        {{ saving ? 'Salvando...' : 'Salvar' }}
+      </button>
     </div>
 
-    <div class="modal-actions">
-      <button class="btn-cancel" (click)="closeModal()">Cancelar</button>
-      <button class="btn-save" (click)="saveProfile()" [disabled]="saving">{{ saving ? 'Salvando...' : 'Salvar' }}</button>
+    <div class="modal-body-preview">
+      
+      <div class="preview-banner">
+        <img *ngIf="previewBackground" [src]="previewBackground" alt="Capa" class="banner-img" />
+        
+        <label class="upload-overlay" for="bg-upload">
+          <span class="upload-icon">📷 Alterar Capa</span>
+        </label>
+        <input id="bg-upload" type="file" accept="image/*" (change)="onBackgroundSelected($event)" class="hidden-file-input" />
+      </div>
+
+      <div class="preview-avatar-section">
+        <div class="preview-avatar">
+          <img *ngIf="previewPfp" [src]="previewPfp" alt="Perfil" class="avatar-img" />
+          
+          <label class="upload-overlay-circle" for="pfp-upload">
+            <span class="upload-icon-circle">📷</span>
+          </label>
+          <input id="pfp-upload" type="file" accept="image/*" (change)="onPfpSelected($event)" class="hidden-file-input" />
+        </div>
+      </div>
+
+      <div class="preview-info-section">
+        <input type="text" class="input-name" placeholder="Nome de exibição" [(ngModel)]="editModel.nome" />
+        
+        <div class="input-username-row">
+          <span class="arroba">@</span>
+          <input type="text" class="input-username" placeholder="usuario" [(ngModel)]="editModel.usuario" />
+        </div>
+        
+        <textarea class="input-bio" rows="3" placeholder="Adicione uma biografia..." [(ngModel)]="editModel.biografia"></textarea>
+      </div>
+
     </div>
   </div>
 </div>
