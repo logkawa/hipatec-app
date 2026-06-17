@@ -2,17 +2,76 @@
   <app-navbar></app-navbar>
 </ion-header>
 
-
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="gradient-bg">
+    <div class="main-layout-wrapper">
+      
+      <div class="main-layout">
+        
+        <div class="feed-column">
+          <div class="feed-container">
+            
+            <div class="post-card" *ngFor="let post of posts">
+              <div class="post-header">
+                <div class="post-avatar-placeholder"></div>
+                <div class="post-meta">
+                  <span class="post-author">{{ post.autor }}</span>
+                  <span class="post-role">{{ post.role }}</span>
+                </div>
+                <span class="post-time">{{ post.tempo }}</span>
+                <button class="btn-options">&#8226;&#8226;&#8226;</button>
+              </div>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+              <div class="post-body">
+                <p class="post-text">{{ post.texto }}</p>
+              </div>
+
+              <div class="post-actions">
+                <button 
+                  class="action-btn btn-like" 
+                  [class.active-like]="post.curtidoUsuario" 
+                  (click)="toggleCurtida(post)">
+                    
+                  <ion-icon [icon]="post.curtidoUsuario ? iconeCurtido : iconeCurtir"></ion-icon>
+                    
+                  <span class="action-count">{{ post.curtidas }}</span>
+                </button>
+                <button class="action-btn btn-comment" (click)="abrirModalComentario(post)">
+                  <ion-icon [icon]="iconeComentar"></ion-icon>
+                  <span class="action-count">{{ post.comentarios }}</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="sidebar-column">
+          <div class="sidebar-card">
+            <h3>Quem seguir</h3>
+            
+            <div class="sidebar-item" *ngFor="let sugestao of sugestoes">
+              <div class="item-avatar"></div>
+              <div class="item-info">
+                <span class="item-name">{{ sugestao.nome }}</span>
+                <span class="item-handle">{{ sugestao.arroba }}</span>
+              </div>
+              <button class="btn-follow">Seguir</button>
+            </div>
+
+            <div class="sidebar-more">
+              <a href="#">Mostrar mais</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
   </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="fab-post">
+    <ion-fab-button (click)="abrirModalPost()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
