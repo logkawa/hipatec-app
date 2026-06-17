@@ -35,3 +35,14 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 /* @import '@ionic/angular/css/palettes/dark.system.css'; */
+
+
+.custom-modal-post {
+  /* Arredonda as bordas do modal */
+  --border-radius: 24px;
+  
+  /* Opcional: Se quiser que ele não ocupe 100% da tela e fique como um "cartão flutuante" */
+  --width: 600px; /* Largura máxima */
+  --height: 350px; /* Altura fixa */
+  --box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}

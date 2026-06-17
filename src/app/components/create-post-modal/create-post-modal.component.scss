@@ -1,0 +1,83 @@
+/* Cabeçalho */
+ion-toolbar {
+  --background: #ffffff;
+}
+
+.draft-title {
+  color: #472b7a;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: right;
+  padding-right: 16px;
+  cursor: pointer;
+}
+
+/* Área de Texto */
+ion-content {
+  --background: #ffffff;
+}
+
+.post-input-area {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+
+  .post-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    border: 1px solid #999999;
+    flex-shrink: 0;
+  }
+
+  textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: #000000;
+    background: transparent;
+    padding-top: 8px;
+
+    &::placeholder {
+      color: #483a61;
+    }
+  }
+}
+
+/* Rodapé de Ações */
+.post-actions-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background: #ffffff;
+  border-top: 1px solid #ebeef0;
+
+  .icon-btn {
+    --color: #472b7a;
+    margin: 0;
+  }
+
+  .btn-submit-post {
+    background: #472b7a;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(71, 43, 122, 0.2);
+    transition: background-color 0.2s;
+
+    &:hover {
+      background: #382260;
+    }
+  }
+}

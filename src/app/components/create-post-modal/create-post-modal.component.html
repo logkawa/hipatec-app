@@ -1,0 +1,30 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="fechar()">
+        <ion-icon [icon]="iconeFechar"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="post-input-area">
+    <div class="post-avatar"></div>
+    <textarea placeholder="Digite aqui..." rows="6" autofocus></textarea>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <div class="post-actions-footer">
+      <div class="icons-group">
+        <ion-button fill="clear" class="icon-btn">
+          <ion-icon [icon]="iconeImagem"></ion-icon>
+        </ion-button>
+      </div>
+      
+      <button class="btn-submit-post">Postar</button>
+    </div>
+  </ion-toolbar>
+</ion-footer>
